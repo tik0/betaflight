@@ -2980,8 +2980,8 @@ void cliProcess(void)
             memset(cliBuffer, 0, sizeof(cliBuffer));
 
             // 'exit' will reset this flag, so we don't need to print prompt again
-            if (!cliMode)
-                return;
+//             if (!cliMode)
+//                 return;
 
             cliPrompt();
         } else if (c == 127) {

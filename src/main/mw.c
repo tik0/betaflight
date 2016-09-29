@@ -566,7 +566,7 @@ void processRx(void)
 
     updateActivatedModes(masterConfig.modeActivationConditions);
 
-    if (!cliMode) {
+    if (true) {
         updateAdjustmentStates(masterConfig.adjustmentRanges);
         processRcAdjustments(currentControlRateProfile, &masterConfig.rxConfig);
     }
@@ -963,7 +963,7 @@ void taskTelemetry(void)
 {
     telemetryCheckState();
 
-    if (!cliMode && feature(FEATURE_TELEMETRY)) {
+    if (feature(FEATURE_TELEMETRY)) {
         telemetryProcess(&masterConfig.rxConfig, masterConfig.flight3DConfig.deadband3d_throttle);
     }
 }

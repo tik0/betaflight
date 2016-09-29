@@ -393,9 +393,9 @@ void handleSerial(void)
 {
 #ifdef USE_CLI
     // in cli mode, all serial stuff goes to here. enter cli mode by sending #
-    if (cliMode) {
+    if (true) {
         cliProcess();
-        return;
+//         return;
     }
 #endif
 
@@ -421,7 +421,7 @@ void evaluateOtherData(serialPort_t *serialPort, uint8_t receivedChar)
     }
 #endif
     if (receivedChar == serialConfig->reboot_character) {
-        systemResetToBootloader();
+//         systemResetToBootloader();
     }
 }
 
