@@ -54,7 +54,7 @@ env:
 sudo: false
 
 addons:
-  artifacts: true
+  artifacts:
     paths:
       - $(find ${HOME} -name "*hex" | tr "\n" ":")
   apt:
