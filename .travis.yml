@@ -53,13 +53,8 @@ env:
 # use new docker environment
 sudo: false
 
-branches:
-  only:
-    - master
-
 addons:
-  artifacts:
-    - true
+  artifacts: true
     paths:
       - $(find ${HOME} -name "*hex" | tr "\n" ":")
   apt:
