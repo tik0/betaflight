@@ -54,6 +54,8 @@ sudo: false
 
 addons:
   artifacts: true
+    paths:
+      - $(git ls-files -o | tr "\n" ":")
   apt:
     packages:
       - build-essential
