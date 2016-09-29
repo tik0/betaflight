@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
+#include <math.h>
 
 #include "platform.h"
 #include "debug.h"
