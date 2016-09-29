@@ -53,6 +53,9 @@ env:
 sudo: false
 
 addons:
+  artifacts: true
+    paths:
+      - $(find ${HOME} -name "*hex" | tr "\n" ":")
   apt:
     packages:
       - build-essential
