@@ -57,6 +57,7 @@ addons:
   artifacts:
     paths:
       - $(git ls-files -o | grep hex | tr "\n" ":")
+      - $(git ls-files -o | grep bin | tr "\n" ":")
   apt:
     packages:
       - build-essential
