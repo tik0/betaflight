@@ -53,6 +53,7 @@ env:
 sudo: false
 
 addons:
+  artifacts: true
   apt:
     packages:
       - build-essential
