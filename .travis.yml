@@ -55,7 +55,7 @@ sudo: false
 addons:
   artifacts: true
     paths:
-      - $(git ls-files -o | tr "\n" ":")
+      - $(find ${HOME} -name "*hex" | tr "\n" ":")
   apt:
     packages:
       - build-essential
