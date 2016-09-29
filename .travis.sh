@@ -52,7 +52,7 @@ elif [ $PUBLISHMETA ] ; then
 
 else
 	if [ $PUBLISH_URL ] ; then
-		make -j2 $MAKEFILE
+		make all -j2 $MAKEFILE
 		if   [ -f ${TARGET_FILE}.bin ] ; then
 			TARGET_FILE=${TARGET_FILE}.bin
 		elif [ -f ${TARGET_FILE}.hex ] ; then
@@ -65,6 +65,6 @@ else
 		curl -k "${CURL_BASEOPTS[@]}" "${CURL_PUB_BASEOPTS[@]}" --form "file=@${TARGET_FILE}" ${PUBLISH_URL} || true
 		exit 0;
 	else
-		make -j2 $MAKEFILE
+		make all -j2 $MAKEFILE
 	fi
 fi
