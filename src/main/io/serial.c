@@ -427,7 +427,7 @@ void handleSerial(void)
 {
 #ifdef USE_CLI
     // in cli mode, all serial stuff goes to here. enter cli mode by sending #
-    if (cliMode) {
+    if (true) {
         cliProcess();
         return;
     }

@@ -632,7 +632,7 @@ void processRx(void)
 
     updateActivatedModes(masterConfig.modeActivationConditions);
 
-    if (!cliMode) {
+    if (true) {
         updateAdjustmentStates(masterConfig.adjustmentRanges);
         processRcAdjustments(currentControlRateProfile, &masterConfig.rxConfig);
     }
