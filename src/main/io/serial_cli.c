@@ -116,6 +116,10 @@ void cliDumpRateProfile(uint8_t rateProfileIndex) ;
 static void cliExit(char *cmdline);
 static void cliFeature(char *cmdline);
 static void cliMotor(char *cmdline);
+static void cliThrottle(char *cmdline);
+static void cliYaw(char *cmdline);
+static void cliPitch(char *cmdline);
+static void cliRoll(char *cmdline);
 static void cliPlaySound(char *cmdline);
 static void cliProfile(char *cmdline);
 static void cliRateProfile(char *cmdline);
@@ -293,6 +297,12 @@ const clicmd_t cmdTable[] = {
     CLI_COMMAND_DEF("mmix", "custom motor mixer", NULL, cliMotorMix),
     CLI_COMMAND_DEF("motor",  "get/set motor",
        "<index> [<value>]", cliMotor),
+//Throttle, Yaw, Pitch, Roll commands over CLI
+CLI_COMMAND_DEF("throttle",  "get/set motor", "<index> [<value>]", cliThrottle),
+CLI_COMMAND_DEF("yaw",  "get/set motor", "<index> [<value>]", cliYaw),
+CLI_COMMAND_DEF("pitch",  "get/set motor", "<index> [<value>]", cliPitch),
+CLI_COMMAND_DEF("roll",  "get/set motor", "<index> [<value>]", cliRoll),
+//============================================
     CLI_COMMAND_DEF("play_sound", NULL,
         "[<index>]\r\n", cliPlaySound),
     CLI_COMMAND_DEF("profile", "change profile",
@@ -2431,6 +2441,187 @@ static void cliMotor(char *cmdline)
 
     cliPrintf("motor %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
 }
+
+//=========================================================================================================================================
+//================================================CLIControlCommands=======================================================================
+//=========================================================================================================================================
+static void cliThrottle(char *cmdline)
+{
+    int motor_index = 0;
+    int motor_value = 0;
+    int index = 0;
+    char *pch = NULL;
+    char *saveptr;
+
+    if (isEmpty(cmdline)) {
+        cliShowParseError();
+        return;
+    }
+
+    pch = strtok_r(cmdline, " ", &saveptr);
+    while (pch != NULL) {
+        switch (index) {
+            case 0:
+                motor_index = atoi(pch);
+                break;
+            case 1:
+                motor_value = atoi(pch);
+                break;
+        }
+        index++;
+        pch = strtok_r(NULL, " ", &saveptr);
+    }
+
+    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
+        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+        return;
+    }
+
+    if (index == 2) {
+        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
+            cliShowArgumentRangeError("value", 1000, 2000);
+            return;
+        } else {
+            motor_disarmed[motor_index] = motor_value;
+        }
+    }
+
+    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+}
+
+static void cliYaw(char *cmdline)
+{
+    int motor_index = 0;
+    int motor_value = 0;
+    int index = 0;
+    char *pch = NULL;
+    char *saveptr;
+
+    if (isEmpty(cmdline)) {
+        cliShowParseError();
+        return;
+    }
+
+    pch = strtok_r(cmdline, " ", &saveptr);
+    while (pch != NULL) {
+        switch (index) {
+            case 0:
+                motor_index = atoi(pch);
+                break;
+            case 1:
+                motor_value = atoi(pch);
+                break;
+        }
+        index++;
+        pch = strtok_r(NULL, " ", &saveptr);
+    }
+
+    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
+        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+        return;
+    }
+
+    if (index == 2) {
+        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
+            cliShowArgumentRangeError("value", 1000, 2000);
+            return;
+        } else {
+            motor_disarmed[motor_index] = motor_value;
+        }
+    }
+
+    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+}
+
+static void cliPitch(char *cmdline)
+{
+    int motor_index = 0;
+    int motor_value = 0;
+    int index = 0;
+    char *pch = NULL;
+    char *saveptr;
+
+    if (isEmpty(cmdline)) {
+        cliShowParseError();
+        return;
+    }
+
+    pch = strtok_r(cmdline, " ", &saveptr);
+    while (pch != NULL) {
+        switch (index) {
+            case 0:
+                motor_index = atoi(pch);
+                break;
+            case 1:
+                motor_value = atoi(pch);
+                break;
+        }
+        index++;
+        pch = strtok_r(NULL, " ", &saveptr);
+    }
+
+    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
+        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+        return;
+    }
+
+    if (index == 2) {
+        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
+            cliShowArgumentRangeError("value", 1000, 2000);
+            return;
+        } else {
+            motor_disarmed[motor_index] = motor_value;
+        }
+    }
+
+    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+}
+
+static void cliRoll(char *cmdline)
+{
+    int motor_index = 0;
+    int motor_value = 0;
+    int index = 0;
+    char *pch = NULL;
+    char *saveptr;
+
+    if (isEmpty(cmdline)) {
+        cliShowParseError();
+        return;
+    }
+
+    pch = strtok_r(cmdline, " ", &saveptr);
+    while (pch != NULL) {
+        switch (index) {
+            case 0:
+                motor_index = atoi(pch);
+                break;
+            case 1:
+                motor_value = atoi(pch);
+                break;
+        }
+        index++;
+        pch = strtok_r(NULL, " ", &saveptr);
+    }
+
+    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
+        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+        return;
+    }
+
+    if (index == 2) {
+        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
+            cliShowArgumentRangeError("value", 1000, 2000);
+            return;
+        } else {
+            motor_disarmed[motor_index] = motor_value;
+        }
+    }
+
+    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+}
+
+//=========================================================================================================================================
 
 static void cliPlaySound(char *cmdline)
 {
