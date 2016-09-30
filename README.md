@@ -2,12 +2,14 @@
 
 Load: public.timokorthals.de/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 
-echo "export PATH=/path/to/gcc-arm-none-eabi-5_4-2016q2/arm-none-eabi/bin/:${PATH}" >> ~/.bashrc
+echo "export PATH=/path/to/gcc-arm-none-eabi-5_4-2016q2/:${PATH}" >> ~/.bashrc
 echo "export TARGET=CC3D_OPBL" >> ~/.bashrc
 
 source ~/.bashrc
 
-git clone https://github.com/tik0/betaflight.git -b 2.9.1_AMiRoFly
+git clone https://github.com/tik0/betaflight.git -b v2.9.1_AMiRoFly
+
+cd betaflight
 
 make binary 
 
