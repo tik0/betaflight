@@ -2,7 +2,7 @@
 
 Load: public.timokorthals.de/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 
-echo "export PATH=/path/to/gcc-arm-none-eabi-5_4-2016q2/:${PATH}" >> ~/.bashrc
+echo "export PATH=/path/to/gcc-arm-none-eabi-5_4-2016q2/bin/:${PATH}" >> ~/.bashrc
 echo "export TARGET=CC3D_OPBL" >> ~/.bashrc
 
 source ~/.bashrc
