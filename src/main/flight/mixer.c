@@ -873,10 +873,10 @@ void mixTable(void)
         }
     }
 
-    // Disarmed mode
+    // Stop the engines in eny case if it is not ARMED
     if (!ARMING_FLAG(ARMED)) {
         for (i = 0; i < motorCount; i++) {
-            motor[i] = motor_disarmed[i];
+            motor[i] = PWM_RANGE_MIN;
         }
     }
 
