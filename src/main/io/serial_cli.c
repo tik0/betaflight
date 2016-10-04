@@ -2141,7 +2141,7 @@ void cliEnter(serialPort_t *serialPort)
 
     cliPrint("\r\nEntering CLI Mode, type 'exit' to return, or 'help'\r\n");
     cliPrompt();
-    ENABLE_ARMING_FLAG(PREVENT_ARMING);
+//     ENABLE_ARMING_FLAG(PREVENT_ARMING);
 }
 
 static void cliExit(char *cmdline)
