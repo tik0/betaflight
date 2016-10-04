@@ -311,6 +311,16 @@ static void updateRcCommands(void)
     if (masterConfig.rxConfig.fpvCamAngleDegrees && !FLIGHT_MODE(HEADFREE_MODE)) {
         scaleRcCommandToFpvCamAngle();
     }
+    
+    // Overwrite rcCommands by CLI
+    if(cliMode) {
+      rcCommand[ROLL]     = cliRcCommand[ROLL];
+      rcCommand[PITCH]    = cliRcCommand[PITCH];
+      rcCommand[YAW]      = cliRcCommand[YAW];
+      rcCommand[THROTTLE] = cliRcCommand[THROTTLE];
+    }
+
+    
 }
 
 static void updateLEDs(void)

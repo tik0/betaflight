@@ -147,6 +147,7 @@ typedef struct controlRateConfig_s {
 } controlRateConfig_t;
 
 extern int16_t rcCommand[4];
+extern int16_t cliRcCommand[4];
 extern int16_t rcCommandSmooth[4];
 
 typedef struct rcControlsConfig_s {

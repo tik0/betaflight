@@ -2447,8 +2447,7 @@ static void cliMotor(char *cmdline)
 //=========================================================================================================================================
 static void cliThrottle(char *cmdline)
 {
-    int motor_index = 0;
-    int motor_value = 0;
+    int throttle_value = 0;
     int index = 0;
     char *pch = NULL;
     char *saveptr;
@@ -2462,37 +2461,30 @@ static void cliThrottle(char *cmdline)
     while (pch != NULL) {
         switch (index) {
             case 0:
-                motor_index = atoi(pch);
+                throttle_value = atoi(pch);
                 break;
-            case 1:
-                motor_value = atoi(pch);
+            default:
+                cliShowParseError();
+                return;
                 break;
         }
         index++;
         pch = strtok_r(NULL, " ", &saveptr);
     }
 
-    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
-        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+    if (throttle_value < PWM_RANGE_MIN || throttle_value > PWM_RANGE_MAX) {
+        cliShowArgumentRangeError("value", PWM_RANGE_MIN, PWM_RANGE_MAX);
         return;
+    } else {
+        cliRcCommand[THROTTLE] = throttle_value;
     }
 
-    if (index == 2) {
-        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
-            cliShowArgumentRangeError("value", 1000, 2000);
-            return;
-        } else {
-            motor_disarmed[motor_index] = motor_value;
-        }
-    }
-
-    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+    cliPrintf("Throttle: %d\r\n", throttle_value);
 }
 
 static void cliYaw(char *cmdline)
 {
-    int motor_index = 0;
-    int motor_value = 0;
+    int yaw_value = 0;
     int index = 0;
     char *pch = NULL;
     char *saveptr;
@@ -2506,37 +2498,30 @@ static void cliYaw(char *cmdline)
     while (pch != NULL) {
         switch (index) {
             case 0:
-                motor_index = atoi(pch);
+                yaw_value = atoi(pch);
                 break;
-            case 1:
-                motor_value = atoi(pch);
+            default:
+                cliShowParseError();
+                return;
                 break;
         }
         index++;
         pch = strtok_r(NULL, " ", &saveptr);
     }
 
-    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
-        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+    if (yaw_value < -500 || yaw_value > 500) {
+        cliShowArgumentRangeError("value", -500, 500);
         return;
+    } else {
+        cliRcCommand[YAW] = yaw_value;
     }
 
-    if (index == 2) {
-        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
-            cliShowArgumentRangeError("value", 1000, 2000);
-            return;
-        } else {
-            motor_disarmed[motor_index] = motor_value;
-        }
-    }
-
-    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+    cliPrintf("Yaw: %d\r\n", yaw_value);
 }
 
 static void cliPitch(char *cmdline)
 {
-    int motor_index = 0;
-    int motor_value = 0;
+    int pitch_value = 0;
     int index = 0;
     char *pch = NULL;
     char *saveptr;
@@ -2550,37 +2535,30 @@ static void cliPitch(char *cmdline)
     while (pch != NULL) {
         switch (index) {
             case 0:
-                motor_index = atoi(pch);
+                pitch_value = atoi(pch);
                 break;
-            case 1:
-                motor_value = atoi(pch);
+            default:
+                cliShowParseError();
+                return;
                 break;
         }
         index++;
         pch = strtok_r(NULL, " ", &saveptr);
     }
 
-    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
-        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+    if (pitch_value < -500 || pitch_value > 500) {
+        cliShowArgumentRangeError("value", -500, 500);
         return;
+    } else {
+        cliRcCommand[PITCH] = pitch_value;
     }
 
-    if (index == 2) {
-        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
-            cliShowArgumentRangeError("value", 1000, 2000);
-            return;
-        } else {
-            motor_disarmed[motor_index] = motor_value;
-        }
-    }
-
-    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+    cliPrintf("Pitch: %d\r\n", pitch_value);
 }
 
 static void cliRoll(char *cmdline)
 {
-    int motor_index = 0;
-    int motor_value = 0;
+    int roll_value = 0;
     int index = 0;
     char *pch = NULL;
     char *saveptr;
@@ -2594,31 +2572,25 @@ static void cliRoll(char *cmdline)
     while (pch != NULL) {
         switch (index) {
             case 0:
-                motor_index = atoi(pch);
+                roll_value = atoi(pch);
                 break;
-            case 1:
-                motor_value = atoi(pch);
+            default:
+                cliShowParseError();
+                return;
                 break;
         }
         index++;
         pch = strtok_r(NULL, " ", &saveptr);
     }
 
-    if (motor_index < 0 || motor_index >= MAX_SUPPORTED_MOTORS) {
-        cliShowArgumentRangeError("index", 0, MAX_SUPPORTED_MOTORS - 1);
+    if (roll_value < -500 || roll_value > 500) {
+        cliShowArgumentRangeError("value", -500, 500);
         return;
+    } else {
+        cliRcCommand[ROLL] = roll_value;
     }
 
-    if (index == 2) {
-        if (motor_value < PWM_RANGE_MIN || motor_value > PWM_RANGE_MAX) {
-            cliShowArgumentRangeError("value", 1000, 2000);
-            return;
-        } else {
-            motor_disarmed[motor_index] = motor_value;
-        }
-    }
-
-    cliPrintf("Throttle %d: %d\r\n", motor_index, motor_disarmed[motor_index]);
+    cliPrintf("Roll: %d\r\n", roll_value);
 }
 
 //=========================================================================================================================================
