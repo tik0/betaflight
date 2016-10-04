@@ -1,3 +1,29 @@
+# FlyMiRo
+
+## Build code
+
+Load: public.timokorthals.de/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+
+echo "export PATH=/path/to/gcc-arm-none-eabi-5_4-2016q2/bin/:${PATH}" >> ~/.bashrc
+echo "export TARGET=CC3D_OPBL" >> ~/.bashrc
+
+source ~/.bashrc
+
+git clone https://github.com/tik0/betaflight.git -b v2.9.1_AMiRoFly
+
+cd betaflight
+
+make binary
+
+## Send cli commands from AMiRo terminal
+
+Enter CLI mode:
+$ echo -e "#\n" > /dev/ttyACM0
+
+Send some motor command:
+$ echo -e "motor 1 1200\n" > /dev/ttyACM0
+
+
 # Betaflight
 
 ![Betaflight](http://static.rcgroups.net/forums/attachments/6/1/0/3/7/6/a9088900-228-bf_logo.jpg)
