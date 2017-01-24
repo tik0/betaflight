@@ -17,6 +17,13 @@ Preliminar (Add user to dialout and logout/login):
 
     usermod -a -G dialout $(whoami)
 
+Connect FC via USB:
+
+1. USB Kabel nur ganz leicht reinstecken, sodass die 5V anliegen, RX/TX aber noch nicht (Die LEDs des FC blinken, der Befehl "tail -f /var/log/syslog" meldet aber kein neues Gerät
+2. 5 Sekunden Warten
+3. USB Stecker ganz rein stecken (nun erscheint ein /dev/ttyACM0)
+4. Per betaflight GUI verbinden 
+
 Enter CLI mode:
 
     $ echo -e "#\n" > /dev/ttyACM0
