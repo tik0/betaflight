@@ -13,6 +13,10 @@ Load `gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2` from e.g. https://lau
 
 ## Send cli commands from AMiRo terminal
 
+Preliminar (Add user to dialout and logout/login):
+
+    usermod -a -G dialout $(whoami)
+
 Enter CLI mode:
 
     $ echo -e "#\n" > /dev/ttyACM0
